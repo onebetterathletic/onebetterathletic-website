@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One Better Athletic</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="1-on-1 online coaching from Calum Gahan, professional rugby league player. Strength, conditioning and nutrition built around your week.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: navy hero and footer, cream content bands, one column on phones, two or three on desktop. Single deliberate look (brand colours), not theme-switched. */
+:root {
+  --navy: #111827;
+  --navy-2: #1a2333;
+  --blue: #1F3864;
+  --gold: #C9A227;
+  --gold-ink: #A8861A;
+  --cream: #F5F3EE;
+  --paper: #FFFFFF;
+  --ink: #111827;
+  --ink-soft: #4a5263;
+  --line: #dcd8cd;
+  --line-dark: #2c3547;
+  --muted-dark: #a9b0bf;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --radius: 6px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.band { padding-block: 64px; }
+.band--dark { background: var(--navy); color: var(--cream); }
+.band--paper { background: var(--paper); }
+
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h2 {
+  font-size: clamp(28px, 5.5vw, 42px);
+  font-weight: 800;
+  font-stretch: 80%;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+h3 { font-size: 21px; font-weight: 750; font-stretch: 90%; line-height: 1.2; }
+p { margin: 0; }
+.eyebrow {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+.band--dark .eyebrow { color: var(--gold); }
+.section-head { display: grid; gap: 12px; max-width: 640px; margin-bottom: 36px; }
+.section-head p { color: var(--ink-soft); }
+.section-head .eyebrow { color: var(--gold-ink); }
+.band--dark .section-head p { color: var(--muted-dark); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--display); font-weight: 750; font-size: 15px;
+  letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+  padding: 16px 24px; border-radius: var(--radius); border: 2px solid transparent;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn--gold { background: var(--gold); color: var(--navy); }
+.btn--gold:hover { background: #d8b23a; transform: translateY(-1px); }
+.btn--ghost { border-color: var(--line-dark); color: var(--cream); }
+.btn--ghost:hover { border-color: var(--gold); }
+.btn--navy { background: var(--navy); color: var(--cream); }
+.btn--navy:hover { background: var(--blue); }
+
+/* Header: floating pill bar */
+.site-header {
+  position: fixed; z-index: 10;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: max(12px, env(safe-area-inset-left, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+  display: flex; justify-content: center; pointer-events: none;
+}
+.nav-pill {
+  pointer-events: auto; width: 100%; max-width: 1040px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 8px 8px 8px 18px;
+}
+.nav-pill .logo img { height: 40px; width: auto; }
+.nav-pill .btn { padding: 10px 18px; font-size: 13px; border-radius: 999px; }
+.nav-links { display: none; gap: 28px; font-family: var(--display); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+section[id] { scroll-margin-top: 90px; }
+.site-header { flex-direction: column; align-items: center; }
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.menu-btn {
+  width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper);
+  display: grid; place-items: center; cursor: pointer; padding: 0; color: var(--navy);
+}
+.menu-btn svg { width: 20px; height: 20px; }
+.menu-btn .i-close { display: none; }
+.menu-btn[aria-expanded="true"] .i-open { display: none; }
+.menu-btn[aria-expanded="true"] .i-close { display: block; }
+.mobile-menu {
+  pointer-events: auto; width: 100%; max-width: 1040px; margin-top: 8px;
+  background: var(--paper); border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 22px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 8px; display: grid;
+}
+.mobile-menu a {
+  font-family: var(--display); font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none;
+  padding: 14px 16px; border-radius: 14px;
+}
+.mobile-menu a:hover, .mobile-menu a:focus-visible { background: var(--cream); }
+.mobile-menu[hidden] { display: none; }
+@media (min-width: 900px) { .menu-btn, .mobile-menu { display: none !important; } }
+
+/* Hero */
+.hero { padding-block: 120px 56px; position: relative; overflow: hidden; isolation: isolate; min-height: 88svh; display: grid; align-items: end; }
+.hero-bg { position: absolute; inset: 0; z-index: -1; background: var(--navy); }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 22%; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17, 24, 39, 0.3) 0%, rgba(17, 24, 39, 0.45) 35%, rgba(17, 24, 39, 0.9) 70%, var(--navy) 100%); }
+.hero .wrap { display: grid; gap: 28px; position: relative; width: 100%; }
+.hero h1 {
+  font-size: clamp(40px, 10vw, 82px);
+  font-weight: 900;
+  font-stretch: 72%;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  max-width: 13ch;
+}
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero .lede { font-size: 19px; color: rgba(245, 243, 238, 0.88); max-width: 34em; }
+.hero .lede strong { color: var(--cream); font-weight: 600; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta-note { font-size: 15px; color: var(--muted-dark); }
+.cta-note b { color: var(--gold); font-weight: 600; }
+.hero-mark {
+  position: absolute; right: -60px; bottom: -80px; width: 340px; opacity: 0.06; pointer-events: none;
+}
+
+/* Season strip: the detail only a pro player's coaching would have */
+.season {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line-dark); border-radius: var(--radius); overflow: hidden;
+  max-width: 560px; margin-top: 8px;
+}
+.season div { padding: 12px 14px; border-right: 1px solid var(--line-dark); min-width: 0; }
+.season div:last-child { border-right: 0; }
+.season span { display: block; font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.season small { display: block; font-size: 14px; color: var(--muted-dark); line-height: 1.35; margin-top: 2px; }
+
+/* Carousel: what you get */
+.carousel-band { padding-block: 64px; overflow: hidden; }
+.carousel-head { display: grid; gap: 12px; text-align: center; justify-items: center; margin-bottom: 32px; }
+.carousel-head p:last-child { color: var(--ink-soft); max-width: 32em; }
+.carousel { position: relative; }
+.track {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding-bottom: 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.track::-webkit-scrollbar { display: none; }
+.card {
+  flex: 0 0 min(86%, 480px); scroll-snap-align: start; min-width: 0;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+  display: grid; grid-template-rows: 1fr auto;
+}
+.card-text { padding: 28px 26px 20px; display: grid; gap: 10px; align-content: start; }
+.card h3 { font-size: clamp(24px, 4.5vw, 30px); font-weight: 800; font-stretch: 85%; line-height: 1.05; }
+.card-text p { color: var(--ink-soft); font-size: 17px; }
+.card-img {
+  aspect-ratio: 4 / 3; max-width: 100%; margin: 0 16px 16px; border-radius: 14px; position: relative;
+  background: linear-gradient(160deg, var(--blue), var(--navy)); display: grid; place-items: center; overflow: hidden;
+}
+.card-img img { width: 46%; opacity: 0.18; }
+.card-img--photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; opacity: 1; }
+.card-img span {
+  position: absolute; bottom: 10px; left: 12px; right: 12px; text-align: center;
+  font-size: 12px; color: var(--muted-dark); letter-spacing: 0.02em;
+}
+.car-btn {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--paper); color: var(--navy); font-size: 22px; line-height: 1; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.15); display: grid; place-items: center;
+}
+.car-btn:disabled { opacity: 0; pointer-events: none; }
+.car-prev { left: 4px; }
+.car-next { right: 4px; }
+@media (max-width: 719px) { .car-btn { width: 40px; height: 40px; font-size: 20px; } }
+.dots { display: flex; gap: 8px; justify-content: center; margin-top: 20px; }
+.dots button { width: 8px; height: 8px; padding: 0; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; transition: width .2s ease, background-color .2s ease; }
+.dots button[aria-current="true"] { width: 28px; background: var(--gold); }
+@media (min-width: 720px) { .carousel-band { padding-block: 96px; } .car-prev { left: -8px; } .car-next { right: -8px; } }
+
+/* Coaching options (light cards) */
+.opts-band { padding-block: 64px; background: var(--cream); border-top: 1px solid var(--line); }
+.opts-head { display: grid; gap: 10px; justify-items: center; text-align: center; margin-bottom: 36px; }
+.opts-title { font-size: clamp(40px, 9vw, 76px); font-weight: 900; font-stretch: 72%; font-style: italic; line-height: 0.95; }
+.opts-sub { font-family: var(--display); font-weight: 700; font-stretch: 80%; text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(18px, 3vw, 24px); color: var(--ink-soft); }
+.currency--light { border-color: var(--line); margin: 10px 0 0; background: var(--paper); }
+.currency--light button { color: var(--ink-soft); }
+.opts { display: grid; gap: 20px; }
+.opt { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.opt--lead { border: 2px solid var(--navy); }
+.opt-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.opt h3 { font-size: 24px; font-weight: 750; font-stretch: 90%; }
+.badge { position: absolute; top: -13px; left: 22px; background: var(--navy); color: var(--cream); font-family: var(--display); font-size: 11px; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+.opt-desc { color: var(--ink-soft); font-size: 16px; }
+.opt-price { display: flex; align-items: baseline; gap: 4px; }
+.opt-price .big { font-family: var(--display); font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.opt-price .unit { color: var(--ink-soft); font-size: 18px; }
+.btn-pill { display: flex; justify-content: center; align-items: center; gap: 10px; background: var(--navy); color: var(--cream); text-decoration: none; font-family: var(--display); font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; font-size: 15px; padding: 18px 20px; border-radius: 999px; transition: background-color .15s ease; }
+.btn-pill:hover { background: var(--blue); }
+.btn-pill--lead { background: var(--gold); color: var(--navy); }
+.btn-pill--lead:hover { background: #d8b23a; }
+.incl { font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.ticks li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; font-size: 16px; }
+.ticks svg { width: 20px; height: 20px; color: var(--gold-ink); margin-top: 2px; }
+.opts-note { text-align: center; color: var(--ink-soft); font-size: 15px; margin-top: 28px; }
+@media (min-width: 720px) { .opts-band { padding-block: 96px; } }
+@media (min-width: 760px) {
+  .opts { grid-template-columns: repeat(3, 1fr); column-gap: 16px; row-gap: 14px; }
+  .opt { padding: 26px 20px; grid-row: span 6; grid-template-rows: subgrid; align-items: start; }
+  .opt-price { align-self: end; }
+  .opts-note { margin-top: 52px; }
+  .opt--lead { margin-block: -22px; padding-block: 48px; box-shadow: 0 18px 40px rgba(17, 24, 39, 0.14); }
+}
+
+/* Who it's for: dark band, two bold cards */
+.who-band { background: var(--navy); color: var(--cream); }
+.who-head { display: grid; gap: 14px; justify-items: center; text-align: center; margin-bottom: 40px; }
+.who-title { font-size: clamp(38px, 8.5vw, 72px); font-weight: 900; font-stretch: 72%; font-style: italic; line-height: 0.95; max-width: 20ch; }
+.who-title em { font-style: italic; color: var(--gold); display: block; }
+.nw { white-space: nowrap; }
+.who { display: grid; gap: 16px; }
+.who-card {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 30px 26px; border-radius: 22px; border: 1px solid var(--line-dark);
+  background: linear-gradient(155deg, var(--blue) 0%, var(--navy-2) 72%);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.who-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.who-num {
+  position: absolute; z-index: -1; top: -14px; right: 14px; pointer-events: none;
+  font-family: var(--display); font-weight: 900; font-stretch: 72%; font-style: italic;
+  font-size: 160px; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(201, 162, 39, 0.3);
+}
+.who-icon { width: 54px; height: 54px; border-radius: 16px; background: var(--gold); color: var(--navy); display: grid; place-items: center; margin-bottom: 12px; }
+.who-icon svg { width: 26px; height: 26px; }
+.who-card .tag { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.who-card h3 { font-size: clamp(28px, 5vw, 36px); font-weight: 850; font-stretch: 76%; text-transform: uppercase; line-height: 1; }
+.who-card p:last-child { color: var(--muted-dark); font-size: 17px; max-width: 32em; }
+@media (min-width: 720px) {
+  .who { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .who-card { padding: 40px 36px; min-height: 340px; }
+  .who-card:last-child { grid-column: 1 / -1; min-height: 0; }
+  .who-icon { margin-bottom: auto; }
+  .who-num { font-size: 200px; }
+}
+@media (min-width: 1000px) {
+  .who { grid-template-columns: repeat(3, 1fr); }
+  .who-card { padding: 36px 30px; min-height: 380px; }
+  .who-card:last-child { grid-column: auto; min-height: 380px; }
+  .who-card h3 { font-size: 31px; }
+}
+
+/* Steps: a real sequence, so numbered */
+.steps { display: grid; gap: 0; counter-reset: step; border-top: 1px solid var(--line); margin: 0; padding: 0; }
+.steps li {
+  list-style: none; display: grid; grid-template-columns: 56px 1fr; gap: 16px;
+  padding-block: 24px; border-bottom: 1px solid var(--line); align-content: start;
+}
+.steps li::before {
+  counter-increment: step; content: counter(step);
+  font-family: var(--display); font-weight: 900; font-stretch: 70%; font-size: 52px; line-height: 0.9; color: var(--gold-ink);
+}
+.steps h3 { margin-bottom: 6px; }
+.steps p { color: var(--ink-soft); }
+.steps ol { margin: 0; padding: 0; }
+
+/* Pricing */
+.currency { display: inline-flex; border: 1px solid var(--line-dark); border-radius: 999px; padding: 4px; gap: 4px; margin-bottom: 28px; }
+.currency button {
+  font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em;
+  background: transparent; color: var(--muted-dark); border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer;
+}
+.currency button[aria-pressed="true"] { background: var(--gold); color: var(--navy); }
+.plans { display: grid; gap: 16px; }
+.plan {
+  background: var(--navy-2); border: 1px solid var(--line-dark); border-radius: var(--radius);
+  padding: 28px 24px; display: grid; gap: 16px; align-content: start; position: relative;
+}
+.plan--lead { border-color: var(--gold); }
+.plan .flag {
+  position: absolute; top: -12px; left: 24px; background: var(--gold); color: var(--navy);
+  font-family: var(--display); font-weight: 750; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 3px;
+}
+.plan .for { color: var(--muted-dark); font-size: 15px; }
+.price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.price .from { font-size: 14px; color: var(--muted-dark); }
+.price .amt { font-family: var(--display); font-weight: 850; font-stretch: 80%; font-size: 44px; line-height: 1; color: var(--cream); font-variant-numeric: tabular-nums; }
+.price .per { font-size: 14px; color: var(--muted-dark); }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 16px; }
+.plan li { padding-left: 22px; position: relative; }
+.plan li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 10px; height: 2px; background: var(--gold); }
+.plan .btn { margin-top: 4px; }
+.extras { display: grid; gap: 12px; margin-top: 24px; }
+.extra {
+  border: 1px dashed var(--line-dark); border-radius: var(--radius); padding: 18px 20px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; align-items: baseline;
+}
+.extra p { color: var(--muted-dark); font-size: 15px; min-width: 0; }
+.extra strong { font-family: var(--display); font-weight: 700; color: var(--cream); }
+.soon { font-family: var(--display); font-size: 11px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 3px; padding: 2px 8px; }
+.founding {
+  margin-top: 28px; padding: 20px 24px; border-radius: var(--radius); background: var(--blue);
+  display: grid; gap: 6px;
+}
+.founding strong { font-family: var(--display); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold); }
+.founding p { color: var(--cream); font-size: 16px; }
+
+/* Get in touch: photo behind, frosted form card (form emails Calum via Web3Forms) */
+.contact-band { position: relative; overflow: hidden; isolation: isolate; background: var(--navy); color: var(--cream); padding-block: 0 64px; }
+.contact-bg { position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 520px; }
+.contact-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 8%; }
+.contact-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17, 24, 39, 0.15) 0%, rgba(17, 24, 39, 0.35) 45%, var(--navy) 100%); }
+.contact { display: grid; gap: 28px; padding-top: 300px; }
+.contact-intro { display: grid; gap: 14px; align-content: end; }
+.contact-title { font-size: clamp(48px, 10vw, 92px); font-weight: 900; font-stretch: 72%; font-style: italic; line-height: 0.92; text-transform: uppercase; }
+.contact-title em { font-style: italic; color: var(--gold); }
+.contact-intro > p { color: var(--cream); opacity: 0.85; font-size: 18px; max-width: 24em; }
+.socials { list-style: none; margin: 6px 0 0; padding: 0; display: flex; gap: 10px; }
+.socials a { width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--cream); display: grid; place-items: center; transition: background-color .15s ease, color .15s ease, transform .15s ease; }
+.socials a:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); transform: translateY(-2px); }
+.socials svg { width: 20px; height: 20px; }
+.form-card {
+  background: rgba(31, 56, 100, 0.35); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 22px;
+  -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+  padding: 28px 22px; display: grid; gap: 14px; min-width: 0; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+.form-card h3 { font-size: 26px; font-weight: 800; font-stretch: 85%; margin-bottom: 6px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.form-card input, .form-card textarea {
+  width: 100%; min-width: 0; font: inherit; font-size: 16px; color: var(--cream);
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; padding: 16px 18px;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.form-card input::placeholder, .form-card textarea::placeholder { color: rgba(245, 243, 238, 0.6); }
+.form-card textarea { min-height: 140px; resize: vertical; }
+.form-card input:focus, .form-card textarea:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.12); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-card .btn-pill { border: 0; cursor: pointer; width: 100%; font-size: 15px; margin-top: 8px; }
+.form-card .btn-pill:disabled { opacity: 0.6; cursor: wait; }
+.form-note { font-size: 14px; color: var(--muted-dark); text-align: center; }
+.form-status { font-size: 15px; color: var(--cream); text-align: center; }
+.form-status:empty { display: none; }
+.form-status.ok { color: #8be3b0; font-weight: 600; }
+.form-status.err { color: #ffb4a8; }
+.form-status a { color: inherit; }
+@media (min-width: 720px) {
+  .field-row { gap: 14px; }
+  .form-card { padding: 40px 36px; }
+}
+@media (min-width: 960px) {
+  .contact-band { padding-block: 140px; min-height: 760px; display: grid; align-items: center; }
+  .contact-bg { height: auto; bottom: 0; left: 14%; right: 34%; }
+  .contact-bg img { object-position: 50% 18%; }
+  .contact-bg::after { background: linear-gradient(90deg, var(--navy) 0%, rgba(17, 24, 39, 0.55) 22%, rgba(17, 24, 39, 0.2) 45%, rgba(17, 24, 39, 0.45) 75%, var(--navy) 100%), linear-gradient(0deg, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0) 55%); }
+  .contact { padding-top: 0; grid-template-columns: 1fr 480px; gap: 56px; align-items: end; width: 100%; }
+  .contact-intro { padding-bottom: 8px; }
+  .form-card { align-self: center; }
+}
+
+/* Results placeholders */
+.results { display: grid; gap: 16px; }
+.result {
+  border: 2px dashed var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 10px; background: var(--cream);
+}
+.result .ph { font-family: var(--display); font-size: 11px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: #a33b2a; }
+.result blockquote { margin: 0; font-size: 18px; color: var(--ink-soft); font-style: italic; }
+.result cite { font-style: normal; font-weight: 600; font-size: 15px; }
+
+/* FAQ accordion: used on faq.html */
+.faq-wrap { display: grid; gap: 32px; align-items: start; }
+.faq-intro { display: grid; gap: 14px; }
+.faq-title { font-size: clamp(44px, 9vw, 76px); font-weight: 900; font-stretch: 72%; font-style: italic; line-height: 0.95; }
+.faq-title em { font-style: italic; color: var(--gold-ink); }
+.faq-intro > p:last-child { color: var(--ink-soft); font-size: 18px; max-width: 22em; }
+.faq-intro a, .faq-a a, .steps a { color: var(--ink); font-weight: 600; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+.faq { border-top: 1px solid var(--line); min-width: 0; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 22px 52px 22px 0; position: relative;
+  font-family: var(--display); font-weight: 700; font-size: 18px; font-stretch: 92%; line-height: 1.3;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; position: absolute; right: 0; top: 50%; width: 32px; height: 32px; margin-top: -16px;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: linear-gradient(var(--ink), var(--ink)) center / 12px 2px no-repeat, linear-gradient(var(--ink), var(--ink)) center / 2px 12px no-repeat;
+  transition: transform .2s ease, background-color .2s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); background-color: var(--gold); border-color: var(--gold); }
+.faq summary:hover::after { border-color: var(--gold); }
+.faq-a { padding: 0 52px 22px 0; display: grid; gap: 12px; color: var(--ink-soft); }
+.faq-a ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+.faq-a b { color: var(--ink); font-weight: 600; }
+@media (min-width: 900px) {
+  .faq-wrap { grid-template-columns: 4fr 7fr; gap: 64px; }
+  .faq-intro { position: sticky; top: 110px; }
+}
+
+/* Footer */
+.site-footer { background: var(--navy); color: var(--muted-dark); font-size: 15px; border-top: 1px solid var(--line-dark); }
+.foot-top { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 24px; padding-block: 56px 40px; }
+.foot-brand { grid-column: 1 / -1; display: grid; gap: 16px; align-content: start; justify-items: start; }
+.foot-brand img { height: 44px; width: auto; }
+.foot-brand p { max-width: 24em; }
+.foot-h { font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.foot-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.site-footer a { color: var(--cream); text-decoration: none; }
+.site-footer a:hover { color: var(--gold); }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 20px 28px; border-top: 1px solid var(--line-dark); font-size: 14px; }
+.foot-bottom-wrap { padding-block: 0; }
+@media (min-width: 720px) {
+  .foot-top { grid-template-columns: 2fr 1fr 1fr; padding-block: 72px 48px; }
+  .foot-brand { grid-column: auto; }
+}
+
+@media (min-width: 720px) {
+  .band { padding-block: 96px; }
+  .hero { padding-block: 150px 96px; min-height: 760px; align-items: center; }
+  .hero-bg img { object-position: 60% 6%; }
+  .hero-bg::after { background: linear-gradient(90deg, rgba(17, 24, 39, 0.92) 0%, rgba(17, 24, 39, 0.78) 32%, rgba(17, 24, 39, 0.3) 62%, rgba(17, 24, 39, 0.15) 100%), linear-gradient(0deg, rgba(17, 24, 39, 0.6) 0%, rgba(17, 24, 39, 0) 30%); }
+  .plans { grid-template-columns: repeat(3, 1fr); }
+  .extras { grid-template-columns: repeat(2, 1fr); }
+  .results { grid-template-columns: repeat(3, 1fr); }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 32px; border-top: 0; }
+  .steps li { grid-template-columns: 1fr; border-bottom: 0; border-top: 2px solid var(--navy); padding-top: 20px; }
+  .hero-mark { width: 520px; right: -40px; bottom: -120px; }
+}
+@media (min-width: 900px) {
+  .nav-links { display: flex; }
+  .nav-pill { padding-left: 24px; }
+  .nav-pill .logo img { height: 46px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-pill">
+    <a class="logo" href="#top" aria-label="One Better Athletic home"><img src="assets/oba-horizontal_on-light.svg" alt="One Better Athletic"></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#who">Who it's for</a>
+      <a href="#how">How it works</a>
+      <a href="#coaching">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="#contact">Get in touch</a>
+    </nav>
+    <div class="nav-right">
+      <button class="menu-btn" type="button" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="i-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a class="btn btn--navy" href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">Apply</a>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Sections" hidden>
+      <a href="#who">Who it's for</a>
+      <a href="#how">How it works</a>
+      <a href="#coaching">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="#contact">Get in touch</a>
+    </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO. Headline options are listed in website/README.md; swap the h1 text to try another. -->
+  <section class="band--dark hero">
+    <div class="hero-bg" aria-hidden="true"><img src="assets/photo-hero.jpg" srcset="assets/photo-hero-1200.jpg 1200w, assets/photo-hero.jpg 2400w" sizes="100vw" alt="" fetchpriority="high"></div>
+    <div class="wrap">
+      <h1>Train like a <em>professional.</em></h1>
+      <p class="lede">Strength, conditioning and nutrition that fit your job, your schedule and your goals.</p>
+      <div class="cta-row">
+        <a class="btn btn--gold" href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">Apply for coaching</a>
+        <a class="btn btn--ghost" href="#coaching">See coaching options</a>
+      </div>
+      <p class="eyebrow">Limited 1-on-1 spots · Get in touch to check availability</p>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET: carousel. Card images are placeholders. -->
+  <section class="carousel-band" id="what">
+    <div class="wrap">
+      <div class="carousel-head">
+        <p class="eyebrow">Personalised to you</p>
+        <h2>What you get</h2>
+      </div>
+      <div class="carousel">
+        <button class="car-btn car-prev" type="button" id="car-prev" aria-label="Previous">‹</button>
+        <div class="track" id="track">
+          <article class="card">
+            <div class="card-text">
+              <h3>Tailored Athletic Programs</h3>
+              <p>Built for you to be an athlete around your schedule. Train like a pro.</p>
+            </div>
+            <div class="card-img card-img--photo"><img src="assets/photo-athletic-programs.jpg" alt="Calum Gahan warming up on the pitch at Toulouse Olympique"></div>
+          </article>
+          <article class="card">
+            <div class="card-text">
+              <h3>Tailored Dietary Programs</h3>
+              <p>Food that fuels performance. Recipes and shopping list included.</p>
+            </div>
+            <div class="card-img card-img--photo"><img src="assets/photo-dietary.jpg" alt="Calum in the kitchen holding eggs and a protein shaker" style="object-position: 48% 50%"></div>
+          </article>
+          <article class="card">
+            <div class="card-text">
+              <h3>Support and Accountability</h3>
+              <p>Weekly check-ins and direct WhatsApp access to me. You won't go it alone.</p>
+            </div>
+            <div class="card-img card-img--photo"><img src="assets/photo-support.jpg" alt="Calum celebrating with Toulouse Olympique teammates" style="object-position: 50% 14%"></div>
+          </article>
+        </div>
+        <button class="car-btn car-next" type="button" id="car-next" aria-label="Next">›</button>
+      </div>
+      <div class="dots" id="dots" aria-label="Slides"></div>
+    </div>
+  </section>
+
+  <!-- COACHING OPTIONS. Monthly prices from the Client Pricing 2026 tab (draft). -->
+  <section class="opts-band" id="coaching">
+    <div class="wrap">
+      <div class="opts-head">
+        <p class="eyebrow">Founding spots open</p>
+        <h2 class="opts-title">Coaching options</h2>
+        <p class="opts-sub">Pick the plan that fits you.</p>
+        <div class="currency currency--light" role="group" aria-label="Currency">
+          <button type="button" id="cur-eur" data-cur="eur" aria-pressed="false">EUR</button>
+          <button type="button" id="cur-aud" data-cur="aud" aria-pressed="true">AUD</button>
+          <button type="button" id="cur-usd" data-cur="usd" aria-pressed="false">USD</button>
+        </div>
+      </div>
+      <div class="opts">
+        <article class="opt">
+          <div class="opt-top"><h3>Training Only</h3></div>
+          <p class="opt-desc">An athlete-based training program, built around your schedule.</p>
+          <p class="opt-price"><span class="big" data-aud="A$229" data-usd="US$179" data-eur="€139">A$229</span><span class="unit">/month</span></p>
+          <a class="btn-pill" href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">Apply now <span aria-hidden="true">→</span></a>
+          <p class="incl">What's included:</p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8-week athlete-based training program, run as two 4-week blocks</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Strength, conditioning and power, built around your schedule</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Demo video for every exercise</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Block 2 built from your progress in block 1</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly check-ins to adjust your program to fit your needs</span></li>
+          </ul>
+        </article>
+        <article class="opt opt--lead">
+          <div class="opt-top"><h3>Athlete Performance</h3><span class="badge">Recommended</span></div>
+          <p class="opt-desc">For people who play. Peak when it counts.</p>
+          <p class="opt-price"><span class="big" data-aud="A$349" data-usd="US$299" data-eur="€219">A$349</span><span class="unit">/month</span></p>
+          <a class="btn-pill btn-pill--lead" href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">Apply now <span aria-hidden="true">→</span></a>
+          <p class="incl">What's included:</p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Season-aware program (off, pre and in-season)</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Personalised calorie and macro targets</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Meal plan, recipes and shopping list</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>WhatsApp access, replies within 24h on weekdays</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Monthly program update</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly check-ins to adjust your plan</span></li>
+          </ul>
+        </article>
+        <article class="opt">
+          <div class="opt-top"><h3>Nutrition Only</h3></div>
+          <p class="opt-desc">An athlete-based diet plan that fuels your training.</p>
+          <p class="opt-price"><span class="big" data-aud="A$299" data-usd="US$249" data-eur="€189">A$299</span><span class="unit">/month</span></p>
+          <a class="btn-pill" href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">Apply now <span aria-hidden="true">→</span></a>
+          <p class="incl">What's included:</p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Daily calorie target set to your goals</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Protein, carb and fat (macro) targets</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Athlete-based meal plan built to fuel your training</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Recipes and a weekly shopping list</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10.5l3.5 3.5L13 6.5M8 13l1 1 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly check-ins to adjust your calories and macros to fit your needs</span></li>
+          </ul>
+        </article>
+      </div>
+      <p class="opts-note">First 10 clients get 20% off, locked in for as long as you stay.</p>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="band who-band" id="who">
+    <div class="wrap">
+      <div class="who-head">
+        <p class="eyebrow">Who it's for</p>
+        <h2 class="who-title">Built for athletes. <em>And anyone who trains like one.</em></h2>
+      </div>
+      <div class="who">
+        <article class="who-card">
+          <span class="who-num" aria-hidden="true">01</span>
+          <span class="who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+          <p class="tag">Athletes</p>
+          <h3>You play a sport and want an edge</h3>
+          <p>Your program is specific to your goals, so you get ahead in <span class="nw">pre-season</span>, <span class="nw">in-season</span> or <span class="nw">off-season</span> and peak when it counts.</p>
+        </article>
+        <article class="who-card">
+          <span class="who-num" aria-hidden="true">02</span>
+          <span class="who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+          <p class="tag">Busy professionals</p>
+          <h3>You want to feel athletic again</h3>
+          <p>You already train, but your body feels older than it should. You get athlete-style training that will make you feel young again and fits around work, with a diet you can actually keep.</p>
+        </article>
+        <article class="who-card">
+          <span class="who-num" aria-hidden="true">03</span>
+          <span class="who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+          <p class="tag">Comebacks</p>
+          <h3>You're coming back from injury</h3>
+          <p>You're cleared to train and want your athleticism back. We rebuild your speed, strength and fitness so you feel like an athlete again.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Three steps to your first session</h2>
+      </div>
+      <ol class="steps">
+        <li><div><h3>Get in touch</h3><p>Fill in the <a href="#contact">form below</a> or message <a href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">One Better Athletic</a>. Tell me your goals, your training and your week.</p></div></li>
+        <li><div><h3>Have a quick call</h3><p>We talk through where you are and where you want to be. If there's a spot and it's a fit, we pick the right plan.</p></div></li>
+        <li><div><h3>Start training</h3><p>Your program lands in your own client sheet with a demo video for every exercise. You check in weekly and I adjust as you go.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- RESULTS: placeholders until real, permission-given client results exist -->
+  <section class="band band--paper" id="results">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Results</p>
+        <h2>Client results</h2>
+        <p>Real results from founding clients will go here.</p>
+      </div>
+      <div class="results">
+        <figure class="result">
+          <p class="ph">Placeholder · replace with a real client</p>
+          <blockquote>"[Client quote about what changed in their training, energy or performance.]"</blockquote>
+          <cite>[Name], [age], [sport or job] · [weeks] weeks</cite>
+        </figure>
+        <figure class="result">
+          <p class="ph">Placeholder · replace with a real client</p>
+          <blockquote>"[Client quote. Before and after photos can sit above this.]"</blockquote>
+          <cite>[Name], [age], [sport or job] · [weeks] weeks</cite>
+        </figure>
+        <figure class="result">
+          <p class="ph">Placeholder · replace with a real client</p>
+          <blockquote>"[Client quote with one specific number: a lift, a time, a bodyweight.]"</blockquote>
+          <cite>[Name], [age], [sport or job] · [weeks] weeks</cite>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET IN TOUCH -->
+  <section class="contact-band" id="contact">
+    <div class="contact-bg" aria-hidden="true"><img src="assets/photo-contact.jpg" alt=""></div>
+    <div class="wrap contact">
+      <div class="contact-intro">
+        <h2 class="contact-title">Get in <em>touch.</em></h2>
+        <p>Have a question, or want to check if there's a spot? Send me a message.</p>
+        <ul class="socials" aria-label="Social media">
+          <li><a href="https://www.instagram.com/onebetterathletic/" target="_blank" rel="noopener" aria-label="Instagram @onebetterathletic" title="Instagram @onebetterathletic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></svg></a></li>
+          <li><a href="https://www.tiktok.com/@calumgahan" target="_blank" rel="noopener" aria-label="TikTok @calumgahan" title="TikTok @calumgahan"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a></li>
+          <li><a href="https://www.youtube.com/@calumgahan" target="_blank" rel="noopener" aria-label="YouTube @calumgahan" title="YouTube @calumgahan"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a></li>
+        </ul>
+      </div>
+      <!-- Sends to Calum's email through Web3Forms. Replace YOUR-WEB3FORMS-KEY with the access key from web3forms.com. -->
+      <form class="form-card" id="contact-form" novalidate>
+        <h3>Send me a message</h3>
+        <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY">
+        <input type="hidden" name="subject" value="New coaching enquiry from the website">
+        <input type="hidden" name="from_name" value="One Better Athletic website">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field-row">
+          <div><label class="sr-only" for="cf-first">First name</label><input id="cf-first" name="first_name" autocomplete="given-name" placeholder="First name" required></div>
+          <div><label class="sr-only" for="cf-last">Last name</label><input id="cf-last" name="last_name" autocomplete="family-name" placeholder="Last name"></div>
+        </div>
+        <label class="sr-only" for="cf-email">Email address</label><input id="cf-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+        <label class="sr-only" for="cf-phone">Phone number (optional)</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number (optional)">
+        <label class="sr-only" for="cf-msg">Message</label><textarea id="cf-msg" name="message" required placeholder="Message"></textarea>
+        <button class="btn-pill btn-pill--lead" type="submit">Send message</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">I'll get back to you about availability.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <img src="assets/oba-horizontal_on-dark.svg" alt="One Better Athletic">
+      <p>1-on-1 online coaching in strength, conditioning and nutrition.</p>
+    </div>
+    <nav class="foot-col" aria-label="Footer">
+      <p class="foot-h">Explore</p>
+      <ul>
+        <li><a href="#who">Who it's for</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#coaching">Pricing</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="foot-col">
+      <p class="foot-h">Contact</p>
+      <ul>
+        <li><a href="#contact">Get in touch</a></li>
+        <li><a href="https://www.instagram.com/onebetterathletic/" target="_blank" rel="noopener">Instagram @onebetterathletic</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom-wrap">
+    <div class="foot-bottom">
+      <span>© 2026 One Better Athletic</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var status = document.getElementById('form-status');
+  var btn = form.querySelector('button[type="submit"]');
+  var ig = ' <a href="https://ig.me/m/onebetterathletic" target="_blank" rel="noopener">Message me on Instagram</a> instead.';
+  function say(msg, cls) { status.className = 'form-status' + (cls ? ' ' + cls : ''); status.innerHTML = msg; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      say('Please add your first name, a valid email and a message.', 'err');
+      var bad = form.querySelector(':invalid'); if (bad) bad.focus();
+      return;
+    }
+    if (form.access_key.value.indexOf('YOUR-') === 0) {
+      say('This form isn\'t switched on yet.' + ig, 'err');
+      return;
+    }
+    btn.disabled = true; say('Sending...');
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(Object.assign(Object.fromEntries(new FormData(form)), { name: (form.first_name.value + ' ' + form.last_name.value).trim() }))
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.success) { form.reset(); say('Thanks, your message is in. I\'ll be in touch soon.', 'ok'); }
+      else { say('Something went wrong.' + ig, 'err'); }
+    }).catch(function () { say('Something went wrong.' + ig, 'err'); })
+      .finally(function () { btn.disabled = false; });
+  });
+})();
+</script>
+<script>
+(function () {
+  // Carousel: swipe or use the arrows; stops at the first card and when the last card meets the right edge.
+  var track = document.getElementById('track');
+  if (!track) return;
+  var cards = track.querySelectorAll('.card');
+  var prev = document.getElementById('car-prev');
+  var next = document.getElementById('car-next');
+  var dots = document.getElementById('dots');
+  var stops = [];
+  function buildStops() {
+    var max = track.scrollWidth - track.clientWidth;
+    stops = [];
+    cards.forEach(function (c) {
+      var x = Math.min(c.offsetLeft - cards[0].offsetLeft, max);
+      if (!stops.length || x - stops[stops.length - 1] > 4) stops.push(x);
+    });
+    dots.innerHTML = '';
+    stops.forEach(function (x, i) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', 'Slide ' + (i + 1));
+      d.addEventListener('click', function () { go(i); });
+      dots.appendChild(d);
+    });
+    dots.hidden = stops.length < 2;
+  }
+  function index() {
+    var best = 0;
+    stops.forEach(function (x, i) { if (Math.abs(track.scrollLeft - x) < Math.abs(track.scrollLeft - stops[best])) best = i; });
+    return best;
+  }
+  function go(i) { i = Math.max(0, Math.min(stops.length - 1, i)); track.scrollTo({ left: stops[i], behavior: 'smooth' }); }
+  prev.addEventListener('click', function () { go(index() - 1); });
+  next.addEventListener('click', function () { go(index() + 1); });
+  function update() {
+    var i = index();
+    prev.disabled = i <= 0;
+    next.disabled = i >= stops.length - 1;
+    dots.querySelectorAll('button').forEach(function (d, j) { d.setAttribute('aria-current', String(j === i)); });
+  }
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', function () { buildStops(); update(); });
+  buildStops(); update();
+})();
+</script>
+<script>
+(function () {
+  var btn = document.getElementById('menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  function set(open) { menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); }
+  btn.addEventListener('click', function () { set(menu.hidden); });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) set(false); });
+})();
+</script>
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.currency button');
+  var amounts = document.querySelectorAll('[data-aud]');
+  function setCurrency(cur) {
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.cur === cur)); });
+    amounts.forEach(function (el) { el.textContent = el.dataset[cur]; });
+    try { localStorage.setItem('oba-currency', cur); } catch (e) {}
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { setCurrency(b.dataset.cur); }); });
+  var saved = null;
+  try { saved = localStorage.getItem('oba-currency'); } catch (e) {}
+  if (!saved) {
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (tz.indexOf('America/') === 0) saved = 'usd';
+    else if (tz.indexOf('Europe/') === 0) saved = 'eur';
+  }
+  if (saved) setCurrency(saved);
+})();
+</script>
+</body>
+</html>
