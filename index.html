@@ -383,6 +383,14 @@ section[id] { scroll-margin-top: 90px; }
 .form-card input::placeholder, .form-card textarea::placeholder { color: rgba(245, 243, 238, 0.6); }
 .form-card textarea { min-height: 140px; resize: vertical; }
 .form-card input:focus, .form-card textarea:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.12); }
+.phone-row { display: grid; grid-template-columns: auto 1fr; gap: 10px; }
+.form-card select {
+  font: inherit; font-size: 16px; color: var(--cream); cursor: pointer;
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; padding: 16px 12px;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.form-card select:focus { outline: none; border-color: var(--gold); background: rgba(255, 255, 255, 0.12); }
+.form-card select option { color: #111827; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-card .btn-pill { border: 0; cursor: pointer; width: 100%; font-size: 15px; margin-top: 8px; }
 .form-card .btn-pill:disabled { opacity: 0.6; cursor: wait; }
@@ -727,7 +735,10 @@ section[id] { scroll-margin-top: 90px; }
           <div><label class="sr-only" for="cf-last">Last name</label><input id="cf-last" name="last_name" autocomplete="family-name" placeholder="Last name"></div>
         </div>
         <label class="sr-only" for="cf-email">Email address</label><input id="cf-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
-        <label class="sr-only" for="cf-phone">Phone number (optional)</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number (optional)">
+        <div class="phone-row">
+          <div><label class="sr-only" for="cf-cc">Country code</label><select id="cf-cc" name="phone_country" autocomplete="tel-country-code"><option value="+61" title="Australia" aria-label="Australia +61" selected>🇦🇺 +61</option><option value="+33" title="France" aria-label="France +33">🇫🇷 +33</option><option value="+64" title="New Zealand" aria-label="New Zealand +64">🇳🇿 +64</option><option value="+44" title="United Kingdom" aria-label="United Kingdom +44">🇬🇧 +44</option><option value="+353" title="Ireland" aria-label="Ireland +353">🇮🇪 +353</option><option value="+1" title="United States / Canada" aria-label="United States / Canada +1">🇺🇸 +1</option><option value="+34" title="Spain" aria-label="Spain +34">🇪🇸 +34</option><option value="+49" title="Germany" aria-label="Germany +49">🇩🇪 +49</option><option value="+39" title="Italy" aria-label="Italy +39">🇮🇹 +39</option><option value="+41" title="Switzerland" aria-label="Switzerland +41">🇨🇭 +41</option><option value="+32" title="Belgium" aria-label="Belgium +32">🇧🇪 +32</option><option value="+31" title="Netherlands" aria-label="Netherlands +31">🇳🇱 +31</option><option value="+971" title="UAE" aria-label="UAE +971">🇦🇪 +971</option><option value="+65" title="Singapore" aria-label="Singapore +65">🇸🇬 +65</option><option value="+27" title="South Africa" aria-label="South Africa +27">🇿🇦 +27</option><option value="+679" title="Fiji" aria-label="Fiji +679">🇫🇯 +679</option><option value="+675" title="Papua New Guinea" aria-label="Papua New Guinea +675">🇵🇬 +675</option><option value="+676" title="Tonga" aria-label="Tonga +676">🇹🇴 +676</option><option value="+685" title="Samoa" aria-label="Samoa +685">🇼🇸 +685</option><option value="" title="Other country (type the code in the number)" aria-label="Other country (type the code in the number) ">Other</option></select></div>
+          <div><label class="sr-only" for="cf-phone">Phone number (optional)</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel-national" placeholder="Phone number (optional)"></div>
+        </div>
         <label class="sr-only" for="cf-msg">Message</label><textarea id="cf-msg" name="message" required placeholder="Message"></textarea>
         <button class="btn-pill btn-pill--lead" type="submit">Send message</button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -792,7 +803,7 @@ section[id] { scroll-margin-top: 90px; }
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(Object.assign(Object.fromEntries(new FormData(form)), { name: (form.first_name.value + ' ' + form.last_name.value).trim() }))
+      body: JSON.stringify(Object.assign(Object.fromEntries(new FormData(form)), { name: (form.first_name.value + ' ' + form.last_name.value).trim(), phone: form.phone.value.trim() ? (form.phone_country.value + ' ' + form.phone.value.trim()).trim() : '', phone_country: undefined }))
     }).then(function (r) { return r.json(); }).then(function (d) {
       if (d.success) { form.reset(); say('Thanks, your message is in. I\'ll be in touch soon.', 'ok'); }
       else { say('Something went wrong.' + ig, 'err'); }
